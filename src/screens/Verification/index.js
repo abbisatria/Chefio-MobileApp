@@ -6,7 +6,22 @@ import {Button, Header} from '../../components';
 export default class Verification extends Component {
   state = {
     code: '',
+    time: '',
   };
+  componentDidMount() {
+    const countDownDate = new Date().getTime() + 300000;
+    const timer = setInterval(() => {
+      const now = new Date().getTime();
+      const distance = countDownDate - now;
+      const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+      const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+      this.setState({time: `0${minutes}:${seconds}`});
+      if (distance < 0) {
+        clearInterval(timer);
+        this.setState({time: '00:00'});
+      }
+    }, 1000);
+  }
   render() {
     return (
       <View style={styles.container}>
@@ -27,7 +42,7 @@ export default class Verification extends Component {
         </View>
         <View style={styles.row}>
           <Text style={styles.text}>code expires in: </Text>
-          <Text style={styles.time}>03:12</Text>
+          <Text style={styles.time}>{this.state.time}</Text>
         </View>
         <Button>Verify</Button>
         <View style={styles.gap} />

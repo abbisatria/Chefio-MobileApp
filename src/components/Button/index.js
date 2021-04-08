@@ -9,10 +9,19 @@ export default function Button({
   textColor = 'white',
   borderWidth,
   borderColor,
+  paddingHorizontal,
+  paddingVertical = 19,
 }) {
   return (
     <TouchableOpacity onPress={onPress} disabled={disabled}>
-      <View style={styles.button(color, borderWidth, borderColor)}>
+      <View
+        style={styles.button(
+          color,
+          borderWidth,
+          borderColor,
+          paddingHorizontal,
+          paddingVertical,
+        )}>
         <Text style={styles.textButton(textColor)}>{children}</Text>
       </View>
     </TouchableOpacity>
@@ -20,11 +29,18 @@ export default function Button({
 }
 
 const styles = StyleSheet.create({
-  button: (color, borderWidth, borderColor) => ({
+  button: (
+    color,
+    borderWidth,
+    borderColor,
+    paddingHorizontal,
+    paddingVertical,
+  ) => ({
     borderWidth: borderWidth,
     borderColor: borderColor,
     backgroundColor: color,
-    paddingVertical: 19,
+    paddingVertical: paddingVertical,
+    paddingHorizontal: paddingHorizontal,
     borderRadius: 32,
   }),
   textButton: textColor => ({

@@ -29,7 +29,7 @@ export default class InputText extends Component {
   render() {
     const {isPasswordShown} = this.state;
     return (
-      <View style={styles.input}>
+      <View style={styles.input(this.props.backgroundColor)}>
         <Icon
           name={this.props.icon}
           color="#2E3E5C"
@@ -39,6 +39,7 @@ export default class InputText extends Component {
         <TextInput
           ref={this.inputPassword}
           placeholder={this.props.placeholder}
+          placeholderTextColor={this.props.placeholderTextColor}
           keyboardType={this.props.keyboardType}
           secureTextEntry={
             this.props.password ? (isPasswordShown ? false : true) : false
@@ -63,15 +64,16 @@ export default class InputText extends Component {
 }
 
 const styles = StyleSheet.create({
-  input: {
+  input: backgroundColor => ({
     flexDirection: 'row',
     alignItems: 'center',
     borderColor: '#D0DBEA',
     borderWidth: 1,
+    backgroundColor: backgroundColor,
     borderRadius: 32,
     paddingHorizontal: 24,
     paddingVertical: 5,
-  },
+  }),
   icon: {
     marginRight: 10,
   },

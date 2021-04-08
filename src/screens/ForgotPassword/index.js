@@ -16,7 +16,9 @@ export default class ForgotPassword extends Component {
           keyboardType="email-address"
         />
         <View style={styles.gap} />
-        <Button>Confirm</Button>
+        <Button onPress={() => this.props.navigation.navigate('ResetPassword')}>
+          Confirm
+        </Button>
       </View>
     );
   }

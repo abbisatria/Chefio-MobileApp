@@ -21,7 +21,9 @@ export default class SignIn extends Component {
           onPress={() => this.props.navigation.navigate('ForgotPassword')}>
           <Text style={styles.textForgot}>Forgot Password?</Text>
         </TouchableOpacity>
-        <Button>Login</Button>
+        <Button onPress={() => this.props.navigation.navigate('MainApp')}>
+          Login
+        </Button>
         <View style={styles.row}>
           <Text style={styles.textAccount}>Don’t have any account? </Text>
           <TouchableOpacity
