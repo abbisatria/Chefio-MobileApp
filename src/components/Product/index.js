@@ -1,5 +1,5 @@
 import React from 'react';
-import {StyleSheet, Text, View, Image} from 'react-native';
+import {StyleSheet, Text, View, Image, TouchableOpacity} from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
 
 const Product = ({
@@ -9,26 +9,36 @@ const Product = ({
   nameProduct,
   category,
   minutes,
+  onPressDetail,
 }) => {
   return (
     <View style={styles.container}>
-      <View style={styles.rowHeader}>
+      {photoProfile && name && (
+        <View style={styles.rowHeader}>
+          <Image
+            source={{
+              uri: photoProfile,
+            }}
+            style={styles.photoProfile}
+          />
+          <Text style={styles.name}>{name}</Text>
+        </View>
+      )}
+      <TouchableOpacity onPress={onPressDetail}>
         <Image
           source={{
-            uri: photoProfile,
+            uri: photoProduct,
           }}
-          style={styles.photoProfile}
+          style={styles.photoProduct}
         />
-        <Text style={styles.name}>{name}</Text>
-      </View>
-      <Image
-        source={{
-          uri: photoProduct,
-        }}
-        style={styles.photoProduct}
-      />
-      <Text style={styles.nameProduct}>{nameProduct}</Text>
+      </TouchableOpacity>
       <View style={styles.rowBody}>
+        <Text style={styles.nameProduct}>{nameProduct}</Text>
+        <TouchableOpacity>
+          <Icon name="heart" color="#9FA5C0" size={15} />
+        </TouchableOpacity>
+      </View>
+      <View style={styles.rowFooter}>
         <Text style={styles.category}>{category}</Text>
         <Icon name="circle" color="#9FA5C0" size={5} />
         <Text style={styles.minutes}>{minutes}</Text>
@@ -70,12 +80,11 @@ const styles = StyleSheet.create({
     fontSize: 17,
     fontFamily: 'Inter-Bold',
     color: '#3E5481',
-    marginTop: 16,
   },
-  rowBody: {
+  rowFooter: {
     flexDirection: 'row',
     alignItems: 'center',
-    marginTop: 6,
+    marginTop: 4,
   },
   category: {
     fontSize: 12,
@@ -88,5 +97,11 @@ const styles = StyleSheet.create({
     fontFamily: 'Inter-Medium',
     color: '#9FA5C0',
     marginLeft: 8,
+  },
+  rowBody: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    marginTop: 8,
   },
 });

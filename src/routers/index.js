@@ -12,6 +12,7 @@ import {
   Upload,
   Notification,
   Profile,
+  Detail,
 } from '../screens';
 import {BottomNavigator} from '../components';
 
@@ -39,6 +40,7 @@ export default function Routers() {
       <Stack.Screen name="ResetPassword" component={ResetPassword} />
       <Stack.Screen name="Verification" component={Verification} />
       <Stack.Screen name="MainApp" component={MainApp} />
+      <Stack.Screen name="Detail" component={Detail} />
     </Stack.Navigator>
   );
 }

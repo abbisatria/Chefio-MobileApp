@@ -120,6 +120,7 @@ export default class Home extends Component {
               nameProduct={item.nameProduct}
               category={item.category}
               minutes={item.minutes}
+              onPressDetail={() => this.props.navigation.navigate('Detail')}
             />
           )}
           keyExtractor={item => String(item.id)}
@@ -135,6 +136,7 @@ const styles = StyleSheet.create({
   },
   container: {
     backgroundColor: 'white',
+    flex: 1,
   },
   title: {
     fontSize: 17,
@@ -154,8 +156,6 @@ const styles = StyleSheet.create({
     backgroundColor: '#F4F5F7',
   },
   body: {
-    backgroundColor: 'white',
     padding: 19,
-    paddingBottom: 240,
   },
 });
