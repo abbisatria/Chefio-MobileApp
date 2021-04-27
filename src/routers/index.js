@@ -13,6 +13,7 @@ import {
   Notification,
   Profile,
   Detail,
+  NextUpload,
 } from '../screens';
 import {BottomNavigator} from '../components';
 
@@ -41,6 +42,7 @@ export default function Routers() {
       <Stack.Screen name="Verification" component={Verification} />
       <Stack.Screen name="MainApp" component={MainApp} />
       <Stack.Screen name="Detail" component={Detail} />
+      <Stack.Screen name="NextUpload" component={NextUpload} />
     </Stack.Navigator>
   );
 }

@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Text, StyleSheet, View} from 'react-native';
+import {Text, StyleSheet, View, Alert, BackHandler} from 'react-native';
 import SmoothPinCodeInput from 'react-native-smooth-pincode-input';
 import {Button, Header} from '../../components';
 
@@ -7,21 +7,48 @@ export default class Verification extends Component {
   state = {
     code: '',
     time: '',
+    countDownDate: new Date().getTime() + 300000,
   };
+  backAction = () => {
+    Alert.alert('Hold on!', 'Are you sure you want to go back?', [
+      {
+        text: 'Cancel',
+        onPress: () => null,
+        style: 'cancel',
+      },
+      {text: 'YES', onPress: () => BackHandler.exitApp()},
+      ,
+    ]);
+    return true;
+  };
+  myTimer = () => {
+    const now = new Date().getTime();
+    const distance = this.state.countDownDate - now;
+    const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+    const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+    this.setState({time: `0${minutes}:${seconds}`});
+    if (distance < 0) {
+      this.stopTimer();
+    }
+  };
+  stopTimer = () => {
+    clearInterval(this.timer);
+    this.setState({time: '00:00'});
+  };
+  timer = setInterval(this.myTimer, 1000);
   componentDidMount() {
-    const countDownDate = new Date().getTime() + 300000;
-    const timer = setInterval(() => {
-      const now = new Date().getTime();
-      const distance = countDownDate - now;
-      const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-      const seconds = Math.floor((distance % (1000 * 60)) / 1000);
-      this.setState({time: `0${minutes}:${seconds}`});
-      if (distance < 0) {
-        clearInterval(timer);
-        this.setState({time: '00:00'});
-      }
-    }, 1000);
+    this.backHandler = BackHandler.addEventListener(
+      'hardwareBackPress',
+      this.backAction,
+    );
   }
+  componentWillUnmount() {
+    this.stopTimer();
+    this.backHandler.remove();
+  }
+  sendAgain = () => {
+    this.setState({countDownDate: new Date().getTime() + 300000});
+  };
   render() {
     return (
       <View style={styles.container}>
@@ -44,13 +71,16 @@ export default class Verification extends Component {
           <Text style={styles.text}>code expires in: </Text>
           <Text style={styles.time}>{this.state.time}</Text>
         </View>
-        <Button>Verify</Button>
+        <Button onPress={() => this.props.navigation.navigate('SignIn')}>
+          Verify
+        </Button>
         <View style={styles.gap} />
         <Button
           color="white"
           textColor="#9FA5C0"
           borderWidth={1}
-          borderColor="#D0DBEA">
+          borderColor="#D0DBEA"
+          onPress={() => this.sendAgain()}>
           Send again
         </Button>
       </View>

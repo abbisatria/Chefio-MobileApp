@@ -48,6 +48,8 @@ export default class InputText extends Component {
           defaultValue={this.props.value}
           onBlur={this.props.onBlur}
           style={styles.text}
+          multiline={this.props.numberOfLines ? true : false}
+          numberOfLines={this.props.numberOfLines}
         />
         {this.props.password && (
           <TouchableOpacity onPress={this.togglePasswordVisiblity}>
@@ -66,10 +68,10 @@ export default class InputText extends Component {
 const styles = StyleSheet.create({
   input: backgroundColor => ({
     flexDirection: 'row',
-    alignItems: 'center',
     borderColor: '#D0DBEA',
     borderWidth: 1,
     backgroundColor: backgroundColor,
+    alignItems: 'center',
     borderRadius: 32,
     paddingHorizontal: 24,
     paddingVertical: 5,

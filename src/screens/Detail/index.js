@@ -83,36 +83,38 @@ export default class Detail extends Component {
             <View style={styles.circleStep}>
               <Text style={styles.numberStep}>1</Text>
             </View>
-            <Text style={styles.numberTextStep}>One</Text>
+            <View style={styles.rowShrink}>
+              <Text style={styles.step}>
+                Your recipe has been uploaded, you can see it on your profile.
+                Your recipe has been uploaded, you can see it on your
+              </Text>
+              <Image
+                source={{
+                  uri:
+                    'https://images.unsplash.com/photo-1476224203421-9ac39bcb3327?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80',
+                }}
+                style={styles.imageStep}
+              />
+            </View>
           </View>
-          <Text style={styles.step}>
-            Your recipe has been uploaded, you can see it on your profile. Your
-            recipe has been uploaded, you can see it on your
-          </Text>
-          <Image
-            source={{
-              uri:
-                'https://images.unsplash.com/photo-1476224203421-9ac39bcb3327?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80',
-            }}
-            style={styles.imageStep}
-          />
           <View style={styles.rowStep}>
             <View style={styles.circleStep}>
               <Text style={styles.numberStep}>2</Text>
             </View>
-            <Text style={styles.numberTextStep}>Two</Text>
+            <View style={styles.rowShrink}>
+              <Text style={styles.step}>
+                Your recipe has been uploaded, you can see it on your profile.
+                Your recipe has been uploaded, you can see it on your
+              </Text>
+              <Image
+                source={{
+                  uri:
+                    'https://images.unsplash.com/photo-1476224203421-9ac39bcb3327?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80',
+                }}
+                style={styles.imageStep}
+              />
+            </View>
           </View>
-          <Text style={styles.step}>
-            Your recipe has been uploaded, you can see it on your profile. Your
-            recipe has been uploaded, you can see it on your
-          </Text>
-          <Image
-            source={{
-              uri:
-                'https://images.unsplash.com/photo-1476224203421-9ac39bcb3327?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80',
-            }}
-            style={styles.imageStep}
-          />
         </View>
       </ScrollView>
     );
@@ -216,8 +218,10 @@ const styles = StyleSheet.create({
   },
   rowStep: {
     flexDirection: 'row',
-    alignItems: 'center',
     marginTop: 16,
+  },
+  rowShrink: {
+    flexShrink: 1,
   },
   circleStep: {
     width: 24,
@@ -226,23 +230,17 @@ const styles = StyleSheet.create({
     backgroundColor: '#2E3E5C',
     justifyContent: 'center',
     alignItems: 'center',
+    marginRight: 16,
   },
   numberStep: {
     fontSize: 12,
     fontFamily: 'Inter-Bold',
     color: 'white',
   },
-  numberTextStep: {
-    fontSize: 15,
-    fontFamily: 'Inter-Bold',
-    color: '#2E3E5C',
-    marginLeft: 10,
-  },
   step: {
     fontSize: 15,
     fontFamily: 'Inter-Medium',
     color: '#2E3E5C',
-    marginTop: 10,
   },
   imageStep: {
     resizeMode: 'cover',

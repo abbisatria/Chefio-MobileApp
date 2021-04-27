@@ -9,3 +9,4 @@ export {default as Upload} from './Upload';
 export {default as Notification} from './Notification';
 export {default as Profile} from './Profile';
 export {default as Detail} from './Detail';
+export {default as NextUpload} from './NextUpload';
